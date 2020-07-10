@@ -24,9 +24,16 @@ private slots:
 
     void on_registrar_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
 private:
     bool iniciar(string susuario,string scontrasena);
     bool registrar(string susuario,string scontrasena);
+    void menu_principal();
     Ui::Dialog *ui;
 };
 

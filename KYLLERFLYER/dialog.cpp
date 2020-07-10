@@ -9,6 +9,10 @@ Dialog::Dialog(QWidget *parent) :
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowCloseButtonHint);
     ui->setupUi(this);
+    ui->pushButton->setVisible(false);
+    ui->pushButton_2->setVisible(false);
+    ui->pushButton_3->setVisible(false);
+
 }
 
 Dialog::~Dialog()
@@ -36,7 +40,7 @@ void Dialog::on_iniciarsesion_clicked()
     //Si el usuario y la contraseña son correctas se permite ingresar al juego
     if(n){
         //Si se logra hacer un registro existoso se permite ingresar al juego
-        if(iniciar(susuario,scontrasena)) close();
+        if(iniciar(susuario,scontrasena)) menu_principal();
     }
     else QMessageBox::about(this,"Error","No se permite el ingreso de espacios");
 }
@@ -60,7 +64,7 @@ void Dialog::on_registrar_clicked()
     }
     if(n){
         //Si se logra hacer un registro existoso se permite ingresar al juego
-        if(!registrar(susuario,scontrasena)) close();
+        if(!registrar(susuario,scontrasena)) menu_principal();
     }
     else QMessageBox::about(this,"Error","No se permite el ingreso de espacios");
 }
@@ -116,4 +120,36 @@ bool Dialog::registrar(string susuario,string scontrasena)
         QMessageBox::about(this,"Informacion","Registro exitoso");
     }
     return n;
+}
+
+//Funcion donde va a aparecer el menu principal luego de registrarse o iniciar sesion
+
+void Dialog::menu_principal()
+{
+   //Se quita la visibilidad del menu de inicio de sesion
+   ui->label->setVisible(false);
+   ui->label_2->setVisible(false);
+   ui->usuario->setVisible(false);
+   ui->registrar->setVisible(false);
+   ui->lineEdit_2->setVisible(false);
+   ui->iniciarsesion->setVisible(false);
+   //Se muestran los botones del menu que nos va a permitir acceder a la jugabilidad
+   ui->pushButton->setVisible(true);
+   ui->pushButton_2->setVisible(true);
+   ui->pushButton_3->setVisible(true);
+}
+
+void Dialog::on_pushButton_clicked()
+{
+
+}
+
+void Dialog::on_pushButton_2_clicked()
+{
+
+}
+
+void Dialog::on_pushButton_3_clicked()
+{
+
 }
