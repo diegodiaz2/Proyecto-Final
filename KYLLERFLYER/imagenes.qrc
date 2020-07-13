@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fondo_juego.jpg</file>
+    </qresource>
+</RCC>

@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "dialog.h"
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,5 +22,7 @@ public:
 private:
     Dialog *usuario;
     Ui::MainWindow *ui;
+    QGraphicsScene *escena=new QGraphicsScene(this);
+    QGraphicsView *view= new QGraphicsView (this);
 };
 #endif // MAINWINDOW_H

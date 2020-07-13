@@ -141,15 +141,18 @@ void Dialog::menu_principal()
 
 void Dialog::on_pushButton_clicked()
 {
-
+    select=1;
+    close();
 }
 
 void Dialog::on_pushButton_2_clicked()
 {
-
+    select=2;
+    close();
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
-
+    select=3;
+    close();
 }

@@ -17,7 +17,9 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = nullptr);
+    int select=0;
     ~Dialog();
+
 
 private slots:
     void on_iniciarsesion_clicked();
@@ -35,6 +37,7 @@ private:
     bool registrar(string susuario,string scontrasena);
     void menu_principal();
     Ui::Dialog *ui;
+
 };
 
 #endif // DIALOG_H
