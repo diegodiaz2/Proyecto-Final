@@ -1,8 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "dialog.h"
+#include "personaje.h"
+#include "bala_horizontal.h"
+
+#include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
@@ -17,6 +20,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void keyPressEvent(QKeyEvent *event);
     ~MainWindow();
 
 private:
@@ -24,5 +28,8 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *escena=new QGraphicsScene(this);
     QGraphicsView *view= new QGraphicsView (this);
+    personaje *jugador;
+    bala_horizontal *bala_tipo1;
+    bool limites(int n);
 };
 #endif // MAINWINDOW_H

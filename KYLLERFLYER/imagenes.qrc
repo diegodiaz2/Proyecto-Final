@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>fondo_juego.jpg</file>
+        <file>Personaje0.png</file>
+        <file>Personaje1.png</file>
+        <file>Personaje2.png</file>
+        <file>Personaje3.png</file>
     </qresource>
 </RCC>
