@@ -4,8 +4,12 @@ bala_horizontal::bala_horizontal( int x, int y)
 {
     posx = x;
     posy = y;
+    //Le damos una posicion inicial
     setPos(posx,posy);
-
+    QTimer *t=new QTimer();
+    //Conectamos la funcion movimiento al timer
+    connect(t,SIGNAL(timeout()),this,SLOT(movimiento()));
+    t->start(50);
 }
 
 void bala_horizontal::setR(int radio)
@@ -30,6 +34,7 @@ QRectF bala_horizontal::boundingRect() const
 
 void bala_horizontal::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    //Le damos un color verde
     painter->setBrush(Qt::green);
     painter->drawEllipse(boundingRect());
 }
@@ -41,6 +46,8 @@ void bala_horizontal::borrar(int x, int y)
 
 void bala_horizontal::movimiento()
 {
+    //La bala realiza un Movimiento Rectilineo Uniforme, por lo que siempre tendra la misma velocidad
+    //Y lo mismo siempre avanzara la misma cantidad de pixeles en un determinado tiempo
     posx=posx+vel;
-    setX(posx);
+    setPos(posx,posy);
 }

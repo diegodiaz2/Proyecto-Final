@@ -4,6 +4,8 @@
 #include "dialog.h"
 #include "personaje.h"
 #include "bala_horizontal.h"
+#include "bala_parabolica.h"
+#include "bala_caida.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -30,6 +32,8 @@ private:
     QGraphicsView *view= new QGraphicsView (this);
     personaje *jugador;
     bala_horizontal *bala_tipo1;
+    bala_parabolica *bala_tipo2;
+    bala_caida *bala_tipo3;
     bool limites(int n);
 };
 #endif // MAINWINDOW_H

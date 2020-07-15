@@ -16,14 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bala_caida.cpp \
     bala_horizontal.cpp \
+    bala_parabolica.cpp \
     dialog.cpp \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp
 
 HEADERS += \
+    bala_caida.h \
     bala_horizontal.h \
+    bala_parabolica.h \
     dialog.h \
     mainwindow.h \
     personaje.h

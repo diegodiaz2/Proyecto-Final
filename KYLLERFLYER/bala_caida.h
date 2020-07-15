@@ -1,18 +1,18 @@
-#ifndef BALA_HORIZONTAL_H
-#define BALA_HORIZONTAL_H
+#ifndef BALA_CAIDA_H
+#define BALA_CAIDA_H
 
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QTimer>
 
-class bala_horizontal:public QObject, public QGraphicsItem
+class bala_caida:public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
     int r=4;
-    int posx, posy;
-    int vel=9;
-    bala_horizontal(int x, int y);
+    double posx, posy,y0;
+    double vely=0;
+    bala_caida(int x, int y);
     void setR(int radio);
     void setPosx(int px);
     void setPosy(int py);
@@ -23,4 +23,4 @@ public slots:
     void movimiento();
 };
 
-#endif // BALA_HORIZONTAL_H
+#endif // BALA_CAIDA_H
