@@ -27,6 +27,10 @@ MainWindow::MainWindow(QWidget *parent)
     jugador= new personaje();
     //Lo añadimos a la escena
     escena->addItem(jugador->avatar);
+    volador=new enemigo_volador();
+    escena->addItem(volador);
+    caminante=new enemigo_caminante();
+    escena->addItem(caminante);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){

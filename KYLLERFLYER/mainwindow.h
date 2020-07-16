@@ -6,6 +6,9 @@
 #include "bala_horizontal.h"
 #include "bala_parabolica.h"
 #include "bala_caida.h"
+#include "enemigo_volador.h"
+#include "enemigo_caminante.h"
+
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -34,6 +37,8 @@ private:
     bala_horizontal *bala_tipo1;
     bala_parabolica *bala_tipo2;
     bala_caida *bala_tipo3;
+    enemigo_volador *volador;
+    enemigo_caminante *caminante;
     bool limites(int n);
 };
 #endif // MAINWINDOW_H

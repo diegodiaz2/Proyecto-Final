@@ -19,7 +19,10 @@ SOURCES += \
     bala_caida.cpp \
     bala_horizontal.cpp \
     bala_parabolica.cpp \
+    bala_vertical.cpp \
     dialog.cpp \
+    enemigo_caminante.cpp \
+    enemigo_volador.cpp \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp
@@ -28,7 +31,10 @@ HEADERS += \
     bala_caida.h \
     bala_horizontal.h \
     bala_parabolica.h \
+    bala_vertical.h \
     dialog.h \
+    enemigo_caminante.h \
+    enemigo_volador.h \
     mainwindow.h \
     personaje.h
 
