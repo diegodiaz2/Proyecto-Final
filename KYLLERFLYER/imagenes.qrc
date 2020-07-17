@@ -9,6 +9,8 @@
         <file>enemigo_volador.png</file>
         <file>enemigo_caminante.png</file>
         <file>enemigo_caminante0.png</file>
-        <file>enemigo_caminante1.png</file>
+        <file>Saltarin0.png</file>
+        <file>Saltarin1.png</file>
+        <file>enemigo_disparador.png</file>
     </qresource>
 </RCC>

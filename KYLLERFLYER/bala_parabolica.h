@@ -13,13 +13,14 @@ public:
     double posx, posy,y0;
     double velx=20;
     double vely=20;
+    double yd;
     bala_parabolica(int x, int y);
     void setR(int radio);
     void setPosx(int px);
     void setPosy(int py);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
-    void borrar(int x,int y);
+    void borrar();
 public slots:
     void movimiento();
 };

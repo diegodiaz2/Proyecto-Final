@@ -12,13 +12,14 @@ public:
     int r=4;
     double posx, posy,y0;
     double vely=0;
+    double yd;
     bala_caida(int x, int y);
     void setR(int radio);
     void setPosx(int px);
     void setPosy(int py);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
-    void borrar(int x,int y);
+    void borrar();
 public slots:
     void movimiento();
 };

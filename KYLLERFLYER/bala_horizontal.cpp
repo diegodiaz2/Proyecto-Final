@@ -1,9 +1,11 @@
 #include "bala_horizontal.h"
+#include "mainwindow.h"
 
-bala_horizontal::bala_horizontal( int x, int y)
+bala_horizontal::bala_horizontal( int x, int y,int vel)
 {
     posx = x;
     posy = y;
+    velx=vel;
     //Le damos una posicion inicial
     setPos(posx,posy);
     QTimer *t=new QTimer();
@@ -39,15 +41,21 @@ void bala_horizontal::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     painter->drawEllipse(boundingRect());
 }
 
-void bala_horizontal::borrar(int x, int y)
+void bala_horizontal::borrar()
 {
-    if(posx>=x and posx<=x+23)delete this;
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    if(posx<0 or posx>1786){
+        mv->escena->removeItem(this);
+        delete this;
+    }
 }
 
 void bala_horizontal::movimiento()
 {
     //La bala realiza un Movimiento Rectilineo Uniforme, por lo que siempre tendra la misma velocidad
-    //Y lo mismo siempre avanzara la misma cantidad de pixeles en un determinado tiempo
-    posx=posx+vel;
+    //Y por lo mismo siempre avanzara la misma cantidad de pixeles en un determinado tiempo
+    posx=posx+velx;
     setPos(posx,posy);
+    borrar();
 }

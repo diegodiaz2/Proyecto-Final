@@ -8,7 +8,8 @@
 #include "bala_caida.h"
 #include "enemigo_volador.h"
 #include "enemigo_caminante.h"
-
+#include "enemigo_saltarin.h"
+#include "enemigo_disparador.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -26,12 +27,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event);
+    static MainWindow * getMainWinPtr();
     ~MainWindow();
-
+    QGraphicsScene *escena=new QGraphicsScene(this);
 private:
+    static MainWindow * pMainWindow;
     Dialog *usuario;
     Ui::MainWindow *ui;
-    QGraphicsScene *escena=new QGraphicsScene(this);
     QGraphicsView *view= new QGraphicsView (this);
     personaje *jugador;
     bala_horizontal *bala_tipo1;
@@ -39,6 +41,8 @@ private:
     bala_caida *bala_tipo3;
     enemigo_volador *volador;
     enemigo_caminante *caminante;
+    enemigo_saltarin *saltarin;
+    enemigo_disparador *disparador;
     bool limites(int n);
 };
 #endif // MAINWINDOW_H

@@ -12,9 +12,9 @@ class enemigo_caminante: public QObject, public  QGraphicsPixmapItem
 
 private:
     bala_vertical *bala;
-
+    QTimer *t;
+    void eliminar();
 public:
-
     bool estado=0;
     double x, vx=-3;
     enemigo_caminante();

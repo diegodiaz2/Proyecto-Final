@@ -1,4 +1,5 @@
 #include "bala_parabolica.h"
+#include "mainwindow.h"
 
 bala_parabolica::bala_parabolica( int x, int y)
 {
@@ -40,9 +41,18 @@ void bala_parabolica::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     painter->drawEllipse(boundingRect());
 }
 
-void bala_parabolica::borrar(int x, int y)
+void bala_parabolica::borrar()
 {
-    if(posx>=x and posx<=x+23)delete this;
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    if(posx<0 or posx>1786){
+        mv->escena->removeItem(this);
+        delete this;
+    }
+    else if(yd>570){
+        mv->escena->removeItem(this);
+        delete this;
+    }
 }
 
 void bala_parabolica::movimiento()
@@ -50,10 +60,10 @@ void bala_parabolica::movimiento()
     //La bala realiza un Movimiento Parabolico, por lo que siempre tendra la misma velocidad en x
     //Pero en y no, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido
-    double yd;
     vely=vely-(9.8)/2;
     posx=posx+velx;
     posy=posy+vely-(9.8)/2;
     yd=2*y0-posy;
     setPos(int(posx),int(yd));
+    borrar();
 }

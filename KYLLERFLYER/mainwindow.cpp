@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+MainWindow * MainWindow::pMainWindow = nullptr;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,10 +29,15 @@ MainWindow::MainWindow(QWidget *parent)
     jugador= new personaje();
     //Lo añadimos a la escena
     escena->addItem(jugador->avatar);
-    volador=new enemigo_volador();
-    escena->addItem(volador);
-    caminante=new enemigo_caminante();
-    escena->addItem(caminante);
+//    volador=new enemigo_volador();
+//    escena->addItem(volador);
+//    caminante=new enemigo_caminante();
+//    escena->addItem(caminante);
+//    saltarin=new enemigo_saltarin();
+//    escena->addItem(saltarin);
+//    disparador=new enemigo_disparador();
+//    escena->addItem(disparador);
+    pMainWindow=this;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
@@ -61,7 +68,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     }
     //Cuando presione C crea una bala horizontal
     if(event->key()==Qt::Key::Key_C){
-        bala_tipo1=new bala_horizontal(jugador->avatar->x()+30,jugador->avatar->y()+25);
+        bala_tipo1=new bala_horizontal(jugador->avatar->x()+30,jugador->avatar->y()+25,9);
         escena->addItem(bala_tipo1);
     }
     //Cuando presione V crea una bala que realiza un mov parabolico
@@ -78,6 +85,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     view->centerOn(jugador->avatar->x(),jugador->avatar->y());
     ui->label->setNum(jugador->avatar->x());
     ui->label_2->setNum(jugador->avatar->y());
+}
+
+MainWindow *MainWindow::getMainWinPtr()
+{
+    return pMainWindow;
 }
 
 MainWindow::~MainWindow()

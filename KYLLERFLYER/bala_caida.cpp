@@ -1,4 +1,5 @@
 #include "bala_caida.h"
+#include "mainwindow.h"
 
 bala_caida::bala_caida( int x, int y)
 {
@@ -40,9 +41,18 @@ void bala_caida::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->drawEllipse(boundingRect());
 }
 
-void bala_caida::borrar(int x, int y)
+void bala_caida::borrar()
 {
-    if(posx>=x and posx<=x+23)delete this;
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    if(posx<0 or posx>1786){
+        mv->escena->removeItem(this);
+        delete this;
+    }
+    else if(yd>570){
+        mv->escena->removeItem(this);
+        delete this;
+    }
 }
 
 void bala_caida::movimiento()
@@ -50,9 +60,9 @@ void bala_caida::movimiento()
     //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
     //Pero en y si, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido
-    double yd;
     vely=vely-(9.8)/2;
     posy=posy+vely-(9.8)/2;
     yd=2*y0-posy;
     setPos(int(posx),int(yd));
+    borrar();
 }

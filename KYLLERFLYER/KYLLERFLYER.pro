@@ -22,6 +22,8 @@ SOURCES += \
     bala_vertical.cpp \
     dialog.cpp \
     enemigo_caminante.cpp \
+    enemigo_disparador.cpp \
+    enemigo_saltarin.cpp \
     enemigo_volador.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -34,6 +36,8 @@ HEADERS += \
     bala_vertical.h \
     dialog.h \
     enemigo_caminante.h \
+    enemigo_disparador.h \
+    enemigo_saltarin.h \
     enemigo_volador.h \
     mainwindow.h \
     personaje.h
