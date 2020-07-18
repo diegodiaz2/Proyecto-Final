@@ -27,8 +27,7 @@ int enemigo_volador::posicion()
 {
     //Se le da una posicion inicial aleatorea
     int y;
-    srand(time(NULL));
-    y=rand()%(200-0);
+    y=rand()%(400);
     return y;
 }
 

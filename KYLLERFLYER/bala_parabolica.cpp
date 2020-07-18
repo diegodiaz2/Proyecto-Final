@@ -1,5 +1,9 @@
 #include "bala_parabolica.h"
 #include "mainwindow.h"
+#include "enemigo_caminante.h"
+#include "enemigo_saltarin.h"
+#include "enemigo_disparador.h"
+#include "enemigo_volador.h"
 
 bala_parabolica::bala_parabolica( int x, int y)
 {
@@ -57,6 +61,17 @@ void bala_parabolica::borrar()
 
 void bala_parabolica::movimiento()
 {
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
+            mv->escena->removeItem(colliding_items[i]);
+            mv->escena->removeItem(this);
+            delete colliding_items[i];
+            delete this;
+            mv->score();
+        }
+    }
     //La bala realiza un Movimiento Parabolico, por lo que siempre tendra la misma velocidad en x
     //Pero en y no, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido

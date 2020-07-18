@@ -30,6 +30,10 @@ public:
     static MainWindow * getMainWinPtr();
     ~MainWindow();
     QGraphicsScene *escena=new QGraphicsScene(this);
+    int puntaje=-10;
+    int vidas=6;
+    void vida();
+    void score();
 private:
     static MainWindow * pMainWindow;
     Dialog *usuario;

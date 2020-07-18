@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     usuario->setModal(true);
     usuario->show();
     ui->setupUi(this);
+    score();
+    vida();
 
     //Creamos la escena
 
@@ -29,15 +31,16 @@ MainWindow::MainWindow(QWidget *parent)
     jugador= new personaje();
     //Lo añadimos a la escena
     escena->addItem(jugador->avatar);
-//    volador=new enemigo_volador();
-//    escena->addItem(volador);
-//    caminante=new enemigo_caminante();
-//    escena->addItem(caminante);
-//    saltarin=new enemigo_saltarin();
-//    escena->addItem(saltarin);
-//    disparador=new enemigo_disparador();
-//    escena->addItem(disparador);
+    volador=new enemigo_volador();
+    escena->addItem(volador);
+    caminante=new enemigo_caminante();
+    escena->addItem(caminante);
+    saltarin=new enemigo_saltarin();
+    escena->addItem(saltarin);
+    disparador=new enemigo_disparador();
+    escena->addItem(disparador);
     pMainWindow=this;
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
@@ -68,7 +71,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     }
     //Cuando presione C crea una bala horizontal
     if(event->key()==Qt::Key::Key_C){
-        bala_tipo1=new bala_horizontal(jugador->avatar->x()+30,jugador->avatar->y()+25,9);
+        bala_tipo1=new bala_horizontal(jugador->avatar->x()+30,jugador->avatar->y()+25,9,1);
         escena->addItem(bala_tipo1);
     }
     //Cuando presione V crea una bala que realiza un mov parabolico
@@ -83,8 +86,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     }
     //El view se centra en la posicion del jugador
     view->centerOn(jugador->avatar->x(),jugador->avatar->y());
-    ui->label->setNum(jugador->avatar->x());
-    ui->label_2->setNum(jugador->avatar->y());
+    //ui->label->setNum(jugador->avatar->x());
+    //ui->label_2->setNum(jugador->avatar->y());
 }
 
 MainWindow *MainWindow::getMainWinPtr()
@@ -95,6 +98,20 @@ MainWindow *MainWindow::getMainWinPtr()
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::vida()
+{
+    vidas-=1;
+    ui->label_4->setNum(vidas);
+}
+
+void MainWindow::score()
+{
+
+    puntaje+=10;
+    ui->label_2->setNum(puntaje);
+
 }
 
 bool MainWindow::limites(int n)

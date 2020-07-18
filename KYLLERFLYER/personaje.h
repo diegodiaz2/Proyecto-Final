@@ -3,8 +3,9 @@
 
 #include <QGraphicsPixmapItem>
 
-class personaje: public QGraphicsPixmapItem
+class personaje: public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 public:
     QGraphicsPixmapItem *avatar;
     personaje();

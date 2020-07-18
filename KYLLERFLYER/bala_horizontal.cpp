@@ -1,11 +1,18 @@
 #include "bala_horizontal.h"
 #include "mainwindow.h"
+#include "enemigo_caminante.h"
+#include "enemigo_saltarin.h"
+#include "enemigo_disparador.h"
+#include "enemigo_volador.h"
+#include "personaje.h"
+#include <QDebug>
 
-bala_horizontal::bala_horizontal( int x, int y,int vel)
+bala_horizontal::bala_horizontal( int x, int y,int vel, int tipo)
 {
     posx = x;
     posy = y;
     velx=vel;
+    typo=tipo;
     //Le damos una posicion inicial
     setPos(posx,posy);
     QTimer *t=new QTimer();
@@ -53,6 +60,30 @@ void bala_horizontal::borrar()
 
 void bala_horizontal::movimiento()
 {
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    if(typo==1){
+        QList<QGraphicsItem *> colliding_items=collidingItems();
+        for(int i=0, n=colliding_items.size(); i<n; i++){
+            if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
+                mv->escena->removeItem(colliding_items[i]);
+                mv->escena->removeItem(this);
+                delete colliding_items[i];
+                delete this;
+                mv->score();
+            }
+        }
+    }
+    if(typo==2){
+        QList<QGraphicsItem *> colliding_items=collidingItems();
+        for(int i=0, n=colliding_items.size(); i<n; i++){
+            if (typeid (*(colliding_items[i])) == typeid(personaje.)){
+                qDebug()<<"Felipe";
+                mv->escena->removeItem(this);
+                delete this;
+                mv->vida();
+            }
+        }
+    }
     //La bala realiza un Movimiento Rectilineo Uniforme, por lo que siempre tendra la misma velocidad
     //Y por lo mismo siempre avanzara la misma cantidad de pixeles en un determinado tiempo
     posx=posx+velx;

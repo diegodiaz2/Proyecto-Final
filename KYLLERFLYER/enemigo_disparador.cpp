@@ -30,8 +30,7 @@ int enemigo_disparador::posicion()
 {
     //Se le da una posicion inicial aleatorea
     int y;
-    srand(time(NULL));
-    y=150+rand()%(400-150);
+    y=rand()%(400);
     return y;
 }
 
@@ -47,6 +46,6 @@ void enemigo_disparador::disparar()
 {
     //Se crea una bala y es añadida a la escena
     MainWindow *mw=MainWindow::getMainWinPtr();
-    bala=new bala_horizontal(x, y+30,-7);
+    bala=new bala_horizontal(x-10, y+30,-7, 2);
     mw->escena->addItem(bala);
 }

@@ -1,6 +1,5 @@
 #include "bala_vertical.h"
 #include "mainwindow.h"
-#include "mainwindow.h"
 
 extern MainWindow *mainwindow;
 
@@ -59,7 +58,7 @@ void bala_vertical::borrar()
 }
 
 void bala_vertical::movimiento()
-{
+{  
     //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
     //Pero en y si, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido
