@@ -27,7 +27,8 @@ SOURCES += \
     enemigo_volador.cpp \
     main.cpp \
     mainwindow.cpp \
-    personaje.cpp
+    personaje.cpp \
+    poder_vida.cpp
 
 HEADERS += \
     bala_caida.h \
@@ -40,7 +41,8 @@ HEADERS += \
     enemigo_saltarin.h \
     enemigo_volador.h \
     mainwindow.h \
-    personaje.h
+    personaje.h \
+    poder_vida.h
 
 FORMS += \
     dialog.ui \

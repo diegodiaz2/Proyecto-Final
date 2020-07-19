@@ -10,11 +10,13 @@
 #include "enemigo_caminante.h"
 #include "enemigo_saltarin.h"
 #include "enemigo_disparador.h"
+#include "poder_vida.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,10 +33,11 @@ public:
     ~MainWindow();
     QGraphicsScene *escena=new QGraphicsScene(this);
     int puntaje=-10;
-    int vidas=6;
+    int vidas=110;
     void vida();
     void score();
 private:
+    int tiempo=10000;
     static MainWindow * pMainWindow;
     Dialog *usuario;
     Ui::MainWindow *ui;
@@ -48,5 +51,8 @@ private:
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
     bool limites(int n);
+    QTimer *timer;
+public slots:
+    void crear_enemigos();
 };
 #endif // MAINWINDOW_H

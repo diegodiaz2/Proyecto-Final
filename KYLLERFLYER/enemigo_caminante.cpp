@@ -9,6 +9,7 @@ void enemigo_caminante::eliminar()
     if(x<0){
         mw->escena->removeItem(this);
         delete this;
+        return;
     }
 }
 
@@ -29,6 +30,16 @@ enemigo_caminante::enemigo_caminante()
 
 void enemigo_caminante::movimiento()
 {
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida();
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
     //El objeto caminante realiza un mov rectilineo, aparte de ello, dabo que en el suelo hay friccion
     //Esta velocidad inicial ira disminuyendo
     vx=vx*exp(-(0.05/50));

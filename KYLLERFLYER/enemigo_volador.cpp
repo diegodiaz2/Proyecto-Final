@@ -8,6 +8,7 @@ void enemigo_volador::eliminar()
     if(x<0){
         mw->escena->removeItem(this);
         delete this;
+        return;
     }
 }
 
@@ -33,6 +34,16 @@ int enemigo_volador::posicion()
 
 void enemigo_volador::movimiento()
 {
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida();
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
     //Se crea una bala y es añadida a la escena
     x=x+vx;
     setPos(x, y);

@@ -55,6 +55,7 @@ void bala_horizontal::borrar()
     if(posx<0 or posx>1786){
         mv->escena->removeItem(this);
         delete this;
+        return;
     }
 }
 
@@ -65,22 +66,23 @@ void bala_horizontal::movimiento()
         QList<QGraphicsItem *> colliding_items=collidingItems();
         for(int i=0, n=colliding_items.size(); i<n; i++){
             if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
+                mv->score();
                 mv->escena->removeItem(colliding_items[i]);
                 mv->escena->removeItem(this);
                 delete colliding_items[i];
                 delete this;
-                mv->score();
+                return;
             }
         }
     }
     if(typo==2){
         QList<QGraphicsItem *> colliding_items=collidingItems();
         for(int i=0, n=colliding_items.size(); i<n; i++){
-            if (typeid (*(colliding_items[i])) == typeid(personaje.)){
-                qDebug()<<"Felipe";
+            if (typeid (*(colliding_items[i])) == typeid(personaje)){
+                mv->vida();
                 mv->escena->removeItem(this);
                 delete this;
-                mv->vida();
+                return;
             }
         }
     }

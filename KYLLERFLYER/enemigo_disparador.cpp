@@ -8,6 +8,7 @@ void enemigo_disparador::eliminar()
     if(x<0){
         mw->escena->removeItem(this);
         delete this;
+        return;
     }
 }
 
@@ -36,6 +37,16 @@ int enemigo_disparador::posicion()
 
 void enemigo_disparador::movimiento()
 {
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida();
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
     //El objeto caminante realiza un mov rectilineo
     x=x+vx;
     setPos(x, y);
