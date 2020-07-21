@@ -15,6 +15,7 @@ public:
     enemigo_disparador();
     int posicion();
     bala_horizontal *bala;
+    void velocidad(int puntaje);
 public slots:
     void movimiento();
     void disparar();

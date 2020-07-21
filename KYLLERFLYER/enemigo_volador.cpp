@@ -32,6 +32,19 @@ int enemigo_volador::posicion()
     return y;
 }
 
+void enemigo_volador::velocidad(int puntaje)
+{
+    if(puntaje>500){
+        vx=-5;
+    }
+    else if(puntaje>700){
+        vx=-7;
+    }
+    else if(puntaje>1500){
+        vx=-10;
+    }
+}
+
 void enemigo_volador::movimiento()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();

@@ -14,6 +14,7 @@ public:
     bool estado;
     enemigo_saltarin();
     void posicion();
+    void velocidad(int puntaje);
 public slots:
     void movimiento();
 };

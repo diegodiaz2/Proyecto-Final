@@ -14,6 +14,7 @@ public:
     double x, y, vx=-3;
     enemigo_volador();
     int posicion();
+    void velocidad(int puntaje);
 public slots:
      void movimiento();
 };

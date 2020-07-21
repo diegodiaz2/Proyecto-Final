@@ -35,6 +35,16 @@ int enemigo_disparador::posicion()
     return y;
 }
 
+void enemigo_disparador::velocidad(int puntaje)
+{
+    if(puntaje>500){
+        vx=-5;
+    }
+    else if(puntaje>700){
+        vx=-6;
+    }
+}
+
 void enemigo_disparador::movimiento()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();

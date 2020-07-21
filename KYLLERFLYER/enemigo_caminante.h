@@ -18,7 +18,7 @@ public:
     bool estado=0;
     double x, vx=-3;
     enemigo_caminante();
-
+    void velocidad(int puntaje);
 public slots:
 
      void movimiento();

@@ -6,13 +6,15 @@ MainWindow * MainWindow::pMainWindow = nullptr;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-{
+{   
+    ui->setupUi(this);
+
     //Mostramos la ventana donde el usuario inicia sesion o se registra, esta no se podra quitar.
 
     usuario = new Dialog(this);
     usuario->setModal(true);
     usuario->show();
-    ui->setupUi(this);
+
     score();
     vida();
 
@@ -115,26 +117,18 @@ void MainWindow::score()
     if(puntaje==100){
         timer->stop();
         timer->start(4000);
-        }
-    else if(puntaje==200){
+    }
+    else if(puntaje==500){
         timer->stop();
         timer->start(3000);
     }
-    else if(puntaje==300){
-        timer->stop();
-        timer->start(1500);
-    }
-    else if(puntaje==600){
-        timer->stop();
-        timer->start(1000);
-    }
     else if(puntaje==1000){
         timer->stop();
-        timer->start(700);
+        timer->start(2000);
     }
-    else if(puntaje==2000){
+    else if(puntaje==1500){
         timer->stop();
-        timer->start(500);
+        timer->start(1500);
     }
 }
 
@@ -165,22 +159,28 @@ void MainWindow::crear_enemigos()
     int seleccion=rand()%4;
     if(seleccion==0){
         volador=new enemigo_volador();
+        volador->velocidad(puntaje);
         escena->addItem(volador);
         saltarin=new enemigo_saltarin();
+        saltarin->velocidad(puntaje);
         escena->addItem(saltarin);
     }
     else if(seleccion==1){
         caminante=new enemigo_caminante();
+        caminante->velocidad(puntaje);
         escena->addItem(caminante);
         disparador=new enemigo_disparador();
+        disparador->velocidad(puntaje);
         escena->addItem(disparador);
     }
     else if(seleccion==2){
         saltarin=new enemigo_saltarin();
+        saltarin->velocidad(puntaje);
         escena->addItem(saltarin);
     }
     else{
         disparador=new enemigo_disparador();
+        disparador->velocidad(puntaje);
         escena->addItem(disparador);
     }
 }

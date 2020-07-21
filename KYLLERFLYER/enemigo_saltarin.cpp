@@ -36,6 +36,19 @@ void enemigo_saltarin::posicion()
     }
 }
 
+void enemigo_saltarin::velocidad(int puntaje)
+{
+    if(puntaje>500){
+        vx=-5;
+    }
+    else if(puntaje>700){
+        vx=-7;
+    }
+    else if(puntaje>1500){
+        vx=-10;
+    }
+}
+
 void enemigo_saltarin::movimiento()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();

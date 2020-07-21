@@ -37,7 +37,6 @@ public:
     void vida();
     void score();
 private:
-    int tiempo=10000;
     static MainWindow * pMainWindow;
     Dialog *usuario;
     Ui::MainWindow *ui;

@@ -37,7 +37,7 @@ QRectF bala_vertical::boundingRect() const
 void bala_vertical::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     //Le damos un color verde
-    painter->setBrush(Qt::yellow);
+    painter->setBrush(Qt::blue);
     painter->drawEllipse(boundingRect());
 }
 

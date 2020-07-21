@@ -89,7 +89,6 @@ bool Dialog::iniciar(string susuario,string scontrasena)
     k.close();
     if(n){
         QMessageBox::about(this,"Informacion","Ingreso exitoso");
-        //close();
     }
     else QMessageBox::about(this,"Error","Usuario o contraseña no valida");
     return n;
@@ -99,7 +98,7 @@ bool Dialog::registrar(string susuario,string scontrasena)
 {
     bool n=0;
     string inf;
-    ifstream k("../KYLLERFLYER/cuentas.txt");//"../Parcial1/productos.txt"
+    ifstream k("../KYLLERFLYER/cuentas.txt"); //"../Parcial1/productos.txt"
     while(!k.eof()){
         k>>inf;
         //Se verifica si ya existe alguna cuenta con ese usuario

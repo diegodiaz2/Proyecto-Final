@@ -73,7 +73,6 @@ void bala_caida::movimiento()
             delete colliding_items[i];
             delete this;
             return;
-
         }
     }
     //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
