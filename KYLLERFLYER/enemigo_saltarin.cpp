@@ -65,13 +65,12 @@ void enemigo_saltarin::movimiento()
     //Con la misma velocidad en x,y
     posicion();
     if(estado){
-        vx=-5;
         vy=60;
     }
     double yd;
-    vy=vy-(9.8)/2;
     x=x+vx;
     y=y+vy-(9.8)/2;
+    vy=vy-(9.8)/2;
     if(y<512)y=512;
     yd=2*512-y;
     setPos(int(x),int(yd));

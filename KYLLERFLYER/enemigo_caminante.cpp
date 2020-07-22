@@ -53,14 +53,14 @@ void enemigo_caminante::movimiento()
             return;
         }
     }
-    //El objeto caminante realiza un mov rectilineo, aparte de ello, dabo que en el suelo hay friccion
-    //Esta velocidad inicial ira disminuyendo
-    vx=vx*exp(-(0.05/50));
     //Se realiza un cambio de imagenes para simular el movimiento
     if (estado) setPixmap(QPixmap(":/enemigo_caminante.png").scaled(30, 50));
     else setPixmap(QPixmap(":/enemigo_caminante0.png").scaled(30, 50));
     estado=!estado;
+    //El objeto caminante realiza un mov rectilineo, aparte de ello, dabo que en el suelo hay friccion
+    //Esta velocidad inicial ira disminuyendo
     x=x+vx;
+    vx=vx*exp(-(0.05/50));
     setX(x);
     eliminar();
 }
