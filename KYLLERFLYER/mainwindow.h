@@ -34,14 +34,16 @@ public:
     QGraphicsScene *escena=new QGraphicsScene(this);
     int puntaje=-10;
     int vidas=110;
+    int tipo;
     void vida();
     void score();
+    QGraphicsView *view= new QGraphicsView (this);
 private:
     static MainWindow * pMainWindow;
     Dialog *usuario;
     Ui::MainWindow *ui;
-    QGraphicsView *view= new QGraphicsView (this);
     personaje *jugador;
+    personaje *jugador2;
     bala_horizontal *bala_tipo1;
     bala_parabolica *bala_tipo2;
     bala_caida *bala_tipo3;
@@ -49,8 +51,8 @@ private:
     enemigo_caminante *caminante;
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
-    bool limites(int n);
     QTimer *timer;
+    bool juego=1;
 public slots:
     void crear_enemigos();
 };

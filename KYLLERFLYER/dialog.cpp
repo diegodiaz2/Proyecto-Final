@@ -1,5 +1,6 @@
 #include "dialog.h"
 #include "ui_dialog.h"
+#include "mainwindow.h"
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -140,18 +141,21 @@ void Dialog::menu_principal()
 
 void Dialog::on_pushButton_clicked()
 {
-    select=1;
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    mv->tipo=1;
     close();
 }
 
 void Dialog::on_pushButton_2_clicked()
 {
-    select=2;
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    mv->tipo=2;
     close();
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
-    select=3;
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    mv->tipo=3;
     close();
 }

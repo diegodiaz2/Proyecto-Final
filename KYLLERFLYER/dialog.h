@@ -17,7 +17,6 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = nullptr);
-    int select=0;
     ~Dialog();
 
 
