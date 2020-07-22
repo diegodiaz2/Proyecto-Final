@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "windows.h"
+#include "fstream"
+#include "iostream"
+using namespace std;
 
 MainWindow * MainWindow::pMainWindow = nullptr;
 
@@ -15,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     usuario = new Dialog(this);
     usuario->setModal(true);
     usuario->show();
-
 
     score();
     vida();
@@ -228,3 +229,29 @@ void MainWindow::crear_enemigos()
     }
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    std::string nombre=ui->lineEdit->text().toStdString();
+    bool n=1;
+    string inf;
+    ifstream k("../KYLLERFLYER/"+n_usuario+".txt");
+    if(k.good()){
+        while(!k.eof()){
+            k>>inf;
+            if(inf==nombre)n=0;
+            k>>inf;
+            k>>inf;
+        }
+        k.close();
+    }
+    if(n){
+        inf=nombre+" "+to_string(puntaje)+" "+to_string(vidas)+"\n";
+        ofstream k("../KYLLERFLYER/"+n_usuario+".txt",ios::app);
+        k<<inf;
+        k.close();
+    }
+    else{
+        QMessageBox::about(this,"Error","Ya hay una partida con este nombre");
+    }
+}

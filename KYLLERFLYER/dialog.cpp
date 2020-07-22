@@ -13,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
     ui->pushButton->setVisible(false);
     ui->pushButton_2->setVisible(false);
     ui->pushButton_3->setVisible(false);
+    ui->comboBox->setVisible(false);
 
 }
 
@@ -31,6 +32,7 @@ void Dialog::on_iniciarsesion_clicked()
     //convertimos los QString a string
     std::string susuario=usuario.toStdString();
     std::string scontrasena=contrasena.toStdString();
+    us=susuario;
     //Se verifica que la contraseña o usuario no tenga espacios
     for(int i=0;susuario[i]!='\0';i++){
         if(susuario[i]==' ')n=0;
@@ -56,6 +58,7 @@ void Dialog::on_registrar_clicked()
     //convertimos los QString a string
     std::string susuario=usuario.toStdString();
     std::string scontrasena=contrasena.toStdString();
+    us=susuario;
     //Se verifica que la contraseña o usuario no tenga espacios
     for(int i=0;susuario[i]!='\0';i++){
         if(susuario[i]==' ')n=0;
@@ -142,6 +145,7 @@ void Dialog::menu_principal()
 void Dialog::on_pushButton_clicked()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();
+    mv->n_usuario=us;
     mv->tipo=1;
     close();
 }
@@ -150,12 +154,14 @@ void Dialog::on_pushButton_2_clicked()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->tipo=2;
+    mv->n_usuario=us;
     close();
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
+    ui->comboBox->setVisible(true);
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->tipo=3;
-    close();
+    mv->n_usuario=us;
 }

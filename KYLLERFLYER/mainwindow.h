@@ -38,6 +38,7 @@ public:
     void vida();
     void score();
     QGraphicsView *view= new QGraphicsView (this);
+    string n_usuario;
 private:
     static MainWindow * pMainWindow;
     Dialog *usuario;
@@ -55,5 +56,7 @@ private:
     bool juego=1;
 public slots:
     void crear_enemigos();
+private slots:
+    void on_pushButton_clicked();
 };
 #endif // MAINWINDOW_H

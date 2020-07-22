@@ -36,6 +36,7 @@ private:
     bool registrar(string susuario,string scontrasena);
     void menu_principal();
     Ui::Dialog *ui;
+    string us;
 
 };
 
