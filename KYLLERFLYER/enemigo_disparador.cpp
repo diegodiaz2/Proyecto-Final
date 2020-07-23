@@ -10,6 +10,11 @@ void enemigo_disparador::eliminar()
         delete this;
         return;
     }
+    if(mw->vidas<=0){
+        mw->escena->removeItem(this);
+        delete this;
+        return;
+    }
 }
 
 enemigo_disparador::enemigo_disparador()

@@ -18,8 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     usuario->setModal(true);
     usuario->show();
 
-    score();
-    vida();
+
 
     //Creamos la escena
 
@@ -32,10 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     view->resize(1000, 625);
     //Deshabilitamos la barra
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //Creamos un jugador
-    jugador= new personaje(1);
-    //Lo añadimos a la escena
-    escena->addItem(jugador);
     pMainWindow=this;
     timer=new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(crear_enemigos()));
@@ -44,9 +39,28 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::keyPressEvent(QKeyEvent *event){
 
     if(juego){
+        if(tipo==1){
+            escena->clear();
+            //Creamos un jugador
+            jugador= new personaje(1);
+            //Lo añadimos a la escena
+            escena->addItem(jugador);
+            timer->start(5000);
+            score();
+            vida();
+            ui->pushButton_2->setEnabled(true);
+        }
         if(tipo==2){
+            escena->clear();
+            jugador= new personaje(1);
+            //Lo añadimos a la escena
+            escena->addItem(jugador);
             jugador2=new personaje(2);
             escena->addItem(jugador2);
+            timer->start(5000);
+            score();
+            vida();
+            ui->pushButton_2->setEnabled(true);
         }
         juego=0;
     }
@@ -140,8 +154,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     }
     //El view se centra en la posicion del jugador
     view->centerOn(jugador->x(),jugador->y());
-    //ui->label->setNum(jugador->avatar->x());
-    //ui->label_2->setNum(jugador->avatar->y());
 }
 
 MainWindow *MainWindow::getMainWinPtr()
@@ -163,8 +175,16 @@ void MainWindow::vida()
         escena->addItem(health);
     }
     if(vidas<=0){
-        QMessageBox::about(this,"Game Over","Estas sin vidas");
-        close();
+        ui->pushButton_2->setEnabled(false);
+        timer->stop();
+        if(tipo==1){
+            delete jugador;
+        }
+        else{
+            delete jugador;
+            delete jugador2;
+        }
+        usuario->show();
     }
 }
 
@@ -256,4 +276,10 @@ void MainWindow::on_pushButton_clicked()
     else{
         QMessageBox::about(this,"Error","Ya hay una partida con este nombre");
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    vidas=10;
+    vida();
 }

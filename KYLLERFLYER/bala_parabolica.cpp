@@ -59,6 +59,11 @@ void bala_parabolica::borrar()
         delete this;
         return;
     }
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
+        delete this;
+        return;
+    }
 }
 
 void bala_parabolica::movimiento()

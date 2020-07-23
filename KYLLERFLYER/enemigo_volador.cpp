@@ -10,6 +10,11 @@ void enemigo_volador::eliminar()
         delete this;
         return;
     }
+    if(mw->vidas<=0){
+        mw->escena->removeItem(this);
+        delete this;
+        return;
+    }
 }
 
 enemigo_volador::enemigo_volador()

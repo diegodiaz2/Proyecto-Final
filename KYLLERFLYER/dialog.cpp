@@ -145,6 +145,7 @@ void Dialog::menu_principal()
 
 void Dialog::cargar()
 {
+    ui->comboBox->clear();
     string inf;
     ifstream k("../KYLLERFLYER/"+us+".txt");
     if (k.good()){
@@ -168,7 +169,9 @@ void Dialog::on_pushButton_clicked()
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->n_usuario=us;
     mv->tipo=1;
-    mv->timer->start(5000);
+    mv->juego=1;
+    mv->vidas=110;
+    mv->puntaje=-10;
     close();
 }
 
@@ -177,13 +180,15 @@ void Dialog::on_pushButton_2_clicked()
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->tipo=2;
     mv->n_usuario=us;
-    mv->timer->start(5000);
+    mv->juego=1;
+    mv->vidas=110;
+    mv->puntaje=-10;
     close();
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
-    ui->pushButton_3->setEnabled(false);
+    //ui->pushButton_3->setEnabled(false);
     ui->comboBox->setVisible(true);
     cargar();
 
@@ -216,7 +221,12 @@ void Dialog::on_pushButton_4_clicked()
             }
         }
     }
-    mv->vida();
-    mv->score();
+    mv->juego=1;
     close();
+}
+
+void Dialog::on_pushButton_5_clicked()
+{
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    mv->close();
 }

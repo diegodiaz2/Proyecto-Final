@@ -57,6 +57,11 @@ void bala_horizontal::borrar()
         delete this;
         return;
     }
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
+        delete this;
+        return;
+    }
 }
 
 void bala_horizontal::movimiento()

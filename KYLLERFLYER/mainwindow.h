@@ -40,6 +40,7 @@ public:
     QGraphicsView *view= new QGraphicsView (this);
     string n_usuario;
     QTimer *timer;
+    bool juego=1;
 private:
     static MainWindow * pMainWindow;
     Dialog *usuario;
@@ -53,10 +54,10 @@ private:
     enemigo_caminante *caminante;
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
-    bool juego=1;
 public slots:
     void crear_enemigos();
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
 };
 #endif // MAINWINDOW_H
