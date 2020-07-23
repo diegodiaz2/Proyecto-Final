@@ -14,6 +14,7 @@ Dialog::Dialog(QWidget *parent) :
     ui->pushButton_2->setVisible(false);
     ui->pushButton_3->setVisible(false);
     ui->comboBox->setVisible(false);
+    ui->pushButton_4->setVisible(false);
 
 }
 
@@ -142,11 +143,32 @@ void Dialog::menu_principal()
    ui->pushButton_3->setVisible(true);
 }
 
+void Dialog::cargar()
+{
+    string inf;
+    ifstream k("../KYLLERFLYER/"+us+".txt");
+    if (k.good()){
+        while(!k.eof()){
+            k>>inf;
+            ui->comboBox->addItem(QString::fromStdString(inf));
+            k>>inf;
+            k>>inf;
+            k>>inf;
+        }
+        ui->pushButton_4->setVisible(true);
+    }
+    else {
+        QMessageBox::about(this, "Error", "Este usuario no tiene partidas guardadas");
+    }
+
+}
+
 void Dialog::on_pushButton_clicked()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->n_usuario=us;
     mv->tipo=1;
+    mv->timer->start(5000);
     close();
 }
 
@@ -155,13 +177,46 @@ void Dialog::on_pushButton_2_clicked()
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->tipo=2;
     mv->n_usuario=us;
+    mv->timer->start(5000);
     close();
 }
 
 void Dialog::on_pushButton_3_clicked()
 {
+    ui->pushButton_3->setEnabled(false);
     ui->comboBox->setVisible(true);
+    cargar();
+
+
+}
+
+void Dialog::on_pushButton_4_clicked()
+{
     MainWindow *mv=MainWindow::getMainWinPtr();
-    mv->tipo=3;
     mv->n_usuario=us;
+    string inf;
+    std::string nombre=ui->comboBox->currentText().toStdString();
+    ifstream k("../KYLLERFLYER/"+us+".txt");
+    if (k.good()){
+        while(!k.eof()){
+            k>>inf;
+            if(inf==nombre){
+                k>>inf;
+                mv->puntaje=stoi(inf)-10;
+                k>>inf;
+                mv->vidas=stoi(inf)+10;
+                k>>inf;
+                mv->tipo=stoi(inf);
+            }
+            else{
+                k>>inf;
+                k>>inf;
+                k>>inf;
+
+            }
+        }
+    }
+    mv->vida();
+    mv->score();
+    close();
 }

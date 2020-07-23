@@ -39,6 +39,7 @@ public:
     void score();
     QGraphicsView *view= new QGraphicsView (this);
     string n_usuario;
+    QTimer *timer;
 private:
     static MainWindow * pMainWindow;
     Dialog *usuario;
@@ -52,7 +53,6 @@ private:
     enemigo_caminante *caminante;
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
-    QTimer *timer;
     bool juego=1;
 public slots:
     void crear_enemigos();

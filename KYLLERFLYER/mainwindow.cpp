@@ -44,17 +44,9 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::keyPressEvent(QKeyEvent *event){
 
     if(juego){
-        if(tipo==1){
-            timer->start(5000);
-        }
-        else if(tipo==2){
+        if(tipo==2){
             jugador2=new personaje(2);
             escena->addItem(jugador2);
-            timer->start(5000);
-        }
-        else{
-            tipo=1;
-
         }
         juego=0;
     }
@@ -180,19 +172,19 @@ void MainWindow::score()
 {
     puntaje+=10;
     ui->label_2->setNum(puntaje);
-    if(puntaje==100){
+    if(puntaje>=100 and puntaje<500){
         timer->stop();
         timer->start(4000);
     }
-    else if(puntaje==500){
+    else if(puntaje>=500 and puntaje<1000){
         timer->stop();
         timer->start(3000);
     }
-    else if(puntaje==1000){
+    else if(puntaje>=1000 and puntaje<1500){
         timer->stop();
         timer->start(2000);
     }
-    else if(puntaje==1500){
+    else if(puntaje>=1500){
         timer->stop();
         timer->start(1500);
     }
@@ -233,23 +225,33 @@ void MainWindow::crear_enemigos()
 void MainWindow::on_pushButton_clicked()
 {
     std::string nombre=ui->lineEdit->text().toStdString();
-    bool n=1;
+    int n=1;
     string inf;
     ifstream k("../KYLLERFLYER/"+n_usuario+".txt");
     if(k.good()){
+        n=2;
         while(!k.eof()){
             k>>inf;
             if(inf==nombre)n=0;
             k>>inf;
             k>>inf;
+            k>>inf;
         }
-        k.close();
+        k.close();       
     }
-    if(n){
-        inf=nombre+" "+to_string(puntaje)+" "+to_string(vidas)+"\n";
+
+    if(n==1){
+        inf=nombre+" "+to_string(puntaje)+" "+to_string(vidas)+" "+to_string(tipo);
         ofstream k("../KYLLERFLYER/"+n_usuario+".txt",ios::app);
         k<<inf;
         k.close();
+    }
+    else if (n==2){
+        inf="\n"+nombre+" "+to_string(puntaje)+" "+to_string(vidas)+" "+to_string(tipo);
+        ofstream k("../KYLLERFLYER/"+n_usuario+".txt",ios::app);
+        k<<inf;
+        k.close();
+
     }
     else{
         QMessageBox::about(this,"Error","Ya hay una partida con este nombre");

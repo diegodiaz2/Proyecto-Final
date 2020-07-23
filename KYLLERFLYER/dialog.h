@@ -31,10 +31,14 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+
+    void on_pushButton_4_clicked();
+
 private:
     bool iniciar(string susuario,string scontrasena);
     bool registrar(string susuario,string scontrasena);
     void menu_principal();
+    void cargar();
     Ui::Dialog *ui;
     string us;
 

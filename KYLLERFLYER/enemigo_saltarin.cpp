@@ -38,13 +38,13 @@ void enemigo_saltarin::posicion()
 
 void enemigo_saltarin::velocidad(int puntaje)
 {
-    if(puntaje>500){
+    if(puntaje>=500 and puntaje<700){
         vx=-5;
     }
-    else if(puntaje>700){
+    else if(puntaje>=700 and puntaje<1500){
         vx=-7;
     }
-    else if(puntaje>1500){
+    else if(puntaje>=1500){
         vx=-10;
     }
 }

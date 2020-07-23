@@ -37,10 +37,10 @@ int enemigo_disparador::posicion()
 
 void enemigo_disparador::velocidad(int puntaje)
 {
-    if(puntaje>500){
+    if(puntaje>=500 and puntaje < 700){
         vx=-5;
     }
-    else if(puntaje>700){
+    else if(puntaje>=700){
         vx=-6;
     }
 }
