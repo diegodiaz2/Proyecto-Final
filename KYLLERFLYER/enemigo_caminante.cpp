@@ -4,15 +4,26 @@
 
 void enemigo_caminante::eliminar()
 {
+    //Se verifican las colisiones
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida(1);
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
     //Cuando el objeto se encuentre fuera del escenario sera eliminado
-    MainWindow *mw=MainWindow::getMainWinPtr();
     if(x<0){
-        mw->escena->removeItem(this);
+        mv->vida(2);
+        mv->escena->removeItem(this);
         delete this;
         return;
     }
-    if(mw->vidas<=0){
-        mw->escena->removeItem(this);
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
         delete this;
         return;
     }
@@ -48,16 +59,6 @@ void enemigo_caminante::velocidad(int puntaje)
 
 void enemigo_caminante::movimiento()
 {
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    QList<QGraphicsItem *> colliding_items=collidingItems();
-    for(int i=0, n=colliding_items.size(); i<n; i++){
-        if (typeid (*(colliding_items[i])) == typeid(personaje)){
-            mv->vida();
-            mv->escena->removeItem(this);
-            delete this;
-            return;
-        }
-    }
     //Se realiza un cambio de imagenes para simular el movimiento
     if (estado) setPixmap(QPixmap(":/enemigo_caminante.png").scaled(30, 50));
     else setPixmap(QPixmap(":/enemigo_caminante0.png").scaled(30, 50));
@@ -73,7 +74,7 @@ void enemigo_caminante::movimiento()
 void enemigo_caminante::disparar()
 {
     //Se crea una bala y es añadida a la escena
-    MainWindow *mw=MainWindow::getMainWinPtr();
+    MainWindow *mv=MainWindow::getMainWinPtr();
     bala=new bala_vertical(x+18, 500);
-    mw->escena->addItem(bala);
+    mv->escena->addItem(bala);
 }

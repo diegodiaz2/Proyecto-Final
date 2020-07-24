@@ -30,17 +30,7 @@ void esfera_gitatoria::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 void esfera_gitatoria::borrar()
 {
-    //Cuando el objeto se encuentre fuera del escenario sera eliminado
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    if(mv->vidas<=0){
-        mv->escena->removeItem(this);
-        delete this;
-        return;
-    }
-}
-
-void esfera_gitatoria::movimiento()
-{
+    //Revisa colisiones
     MainWindow *mv=MainWindow::getMainWinPtr();
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
@@ -50,6 +40,16 @@ void esfera_gitatoria::movimiento()
             delete colliding_items[i];
         }
     }
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
+        delete this;
+        return;
+    }
+}
+
+void esfera_gitatoria::movimiento()
+{
     ax=((50000/pow(sqrt(pow(900-posx,2)+pow(310-posy,2)),3))*(900-posx));
     ay=((50000/pow(sqrt(pow(900-posx,2)+pow(310-posy,2)),3))*(310-posy));
     velx=velx+ax;

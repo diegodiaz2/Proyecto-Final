@@ -35,22 +35,7 @@ void bala_horizontal::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 
 void bala_horizontal::borrar()
 {
-    //Cuando el objeto se encuentre fuera del escenario sera eliminado
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    if(posx<0 or posx>1786){
-        mv->escena->removeItem(this);
-        delete this;
-        return;
-    }
-    if(mv->vidas<=0){
-        mv->escena->removeItem(this);
-        delete this;
-        return;
-    }
-}
-
-void bala_horizontal::movimiento()
-{
+    //Se verifican las colisiones
     MainWindow *mv=MainWindow::getMainWinPtr();
     if(typo==1){
         QList<QGraphicsItem *> colliding_items=collidingItems();
@@ -69,13 +54,28 @@ void bala_horizontal::movimiento()
         QList<QGraphicsItem *> colliding_items=collidingItems();
         for(int i=0, n=colliding_items.size(); i<n; i++){
             if (typeid (*(colliding_items[i])) == typeid(personaje)){
-                mv->vida();
+                mv->vida(1);
                 mv->escena->removeItem(this);
                 delete this;
                 return;
             }
         }
     }
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    if(posx<0 or posx>1786){
+        mv->escena->removeItem(this);
+        delete this;
+        return;
+    }
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
+        delete this;
+        return;
+    }
+}
+
+void bala_horizontal::movimiento()
+{
     //La bala realiza un Movimiento Rectilineo Uniforme, por lo que siempre tendra la misma velocidad
     //Y por lo mismo siempre avanzara la misma cantidad de pixeles en un determinado tiempo
     posx=posx+velx;

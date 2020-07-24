@@ -28,8 +28,18 @@ void bala_vertical::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
 
 void bala_vertical::borrar()
 {
-    //Cuando el objeto se encuentre fuera del escenario sera eliminado
+    //Se verifican las colisiones
     MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida(1);
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
     if(posx<0 or posx>1786){
         mv->escena->removeItem(this);
         delete this;
@@ -49,16 +59,6 @@ void bala_vertical::borrar()
 
 void bala_vertical::movimiento()
 {
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    QList<QGraphicsItem *> colliding_items=collidingItems();
-    for(int i=0, n=colliding_items.size(); i<n; i++){
-        if (typeid (*(colliding_items[i])) == typeid(personaje)){
-            mv->vida();
-            mv->escena->removeItem(this);
-            delete this;
-            return;
-        }
-    }
     //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
     //Pero en y si, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido

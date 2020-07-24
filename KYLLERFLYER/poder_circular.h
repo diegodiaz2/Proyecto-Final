@@ -14,12 +14,10 @@ private:
     double x,y=0,yd;
     double vy=-5;
     QTimer *t;
-    QTimer *t2;
     void eliminar();
     esfera_gitatoria *bala;
 private slots:
     void movimiento();
-    void eliminar_bala();
 };
 
 #endif // PODER_CIRCULAR_H

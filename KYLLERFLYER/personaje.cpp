@@ -70,11 +70,12 @@ void personaje::movimiento()
         if(limites(1))setPos(x()+vel-2,y());
     }
     if(j==1){
-        if(x()<=500) mv->view->centerOn(500,y());
-        else if(x()>1300) mv->view->centerOn(1300,y());
-        else if(x()>500 and x()<800) mv->view->centerOn(700,y());
-        else if(x()>800 and x()<1000)mv->view->centerOn(900,y());
-        else mv->view->centerOn(1100,y());
+        mv->view->centerOn(x(),y());
+//        if(x()<=500) mv->view->centerOn(500,y());
+//        else if(x()>1300) mv->view->centerOn(1300,y());
+//        else if(x()>500 and x()<800) mv->view->centerOn(700,y());
+//        else if(x()>800 and x()<1000)mv->view->centerOn(900,y());
+//        else mv->view->centerOn(1100,y());
     }
 }
 
@@ -109,7 +110,7 @@ void personaje::poder_vidas()
             mv->escena->removeItem(colliding_items[i]);
             delete colliding_items[i];
             mv->vidas=110;
-            mv->vida();
+            mv->vida(1);
         }
     }
 }

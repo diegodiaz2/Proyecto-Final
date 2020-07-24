@@ -32,8 +32,20 @@ void bala_caida::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void bala_caida::borrar()
 {
-    //Cuando el objeto se encuentre fuera del escenario sera eliminado
     MainWindow *mv=MainWindow::getMainWinPtr();
+    //Se verifican las colisiones
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
+            mv->score();
+            mv->escena->removeItem(colliding_items[i]);
+            mv->escena->removeItem(this);
+            delete colliding_items[i];
+            delete this;
+            return;
+        }
+    }
+    //Cuando el objeto se encuentre fuera del escenario sera eliminado
     if(posx<0 or posx>1786){
         mv->escena->removeItem(this);
         delete this;
@@ -53,18 +65,6 @@ void bala_caida::borrar()
 
 void bala_caida::movimiento()
 {
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    QList<QGraphicsItem *> colliding_items=collidingItems();
-    for(int i=0, n=colliding_items.size(); i<n; i++){
-        if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
-            mv->score();
-            mv->escena->removeItem(colliding_items[i]);
-            mv->escena->removeItem(this);
-            delete colliding_items[i];
-            delete this;
-            return;
-        }
-    }
     //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
     //Pero en y si, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
     //Debido a que en Qt el eje y esta invertido

@@ -3,15 +3,26 @@
 
 void enemigo_disparador::eliminar()
 {
+    //Revisa colisiones
+    MainWindow *mv=MainWindow::getMainWinPtr();
+    QList<QGraphicsItem *> colliding_items=collidingItems();
+    for(int i=0, n=colliding_items.size(); i<n; i++){
+        if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            mv->vida(1);
+            mv->escena->removeItem(this);
+            delete this;
+            return;
+        }
+    }
     //Cuando el objeto se encuentre fuera del escenario sera eliminado
-    MainWindow *mw=MainWindow::getMainWinPtr();
     if(x<0){
-        mw->escena->removeItem(this);
+        mv->vida(2);
+        mv->escena->removeItem(this);
         delete this;
         return;
     }
-    if(mw->vidas<=0){
-        mw->escena->removeItem(this);
+    if(mv->vidas<=0){
+        mv->escena->removeItem(this);
         delete this;
         return;
     }
@@ -53,16 +64,6 @@ void enemigo_disparador::velocidad(int puntaje)
 
 void enemigo_disparador::movimiento()
 {
-    MainWindow *mv=MainWindow::getMainWinPtr();
-    QList<QGraphicsItem *> colliding_items=collidingItems();
-    for(int i=0, n=colliding_items.size(); i<n; i++){
-        if (typeid (*(colliding_items[i])) == typeid(personaje)){
-            mv->vida();
-            mv->escena->removeItem(this);
-            delete this;
-            return;
-        }
-    }
     //El objeto caminante realiza un mov rectilineo
     x=x+vx;
     setPos(x, y);
@@ -72,7 +73,7 @@ void enemigo_disparador::movimiento()
 void enemigo_disparador::disparar()
 {
     //Se crea una bala y es añadida a la escena
-    MainWindow *mw=MainWindow::getMainWinPtr();
+    MainWindow *mv=MainWindow::getMainWinPtr();
     bala=new bala_horizontal(x-10, y+30,-8, 2);
-    mw->escena->addItem(bala);
+    mv->escena->addItem(bala);
 }

@@ -36,7 +36,7 @@ public:
     int puntaje=-10;
     int vidas=110;
     int tipo;
-    void vida();
+    void vida(int n);
     void score();
     QGraphicsView *view= new QGraphicsView (this);
     string n_usuario;

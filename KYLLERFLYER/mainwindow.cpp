@@ -34,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
     pMainWindow=this;
     timer=new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(crear_enemigos()));
+    ui->pushButton_2->setEnabled(false);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){
@@ -47,7 +48,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             escena->addItem(jugador);
             timer->start(5000);
             score();
-            vida();
+            vida(1);
             ui->pushButton_2->setEnabled(true);
         }
         if(tipo==2){
@@ -59,7 +60,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             escena->addItem(jugador2);
             timer->start(5000);
             score();
-            vida();
+            vida(1);
             ui->pushButton_2->setEnabled(true);
         }
         juego=0;
@@ -165,9 +166,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::vida()
+void MainWindow::vida(int n)
 {
-    vidas-=10;
+    if(n==1)vidas-=10;
+    else if(n==2)vidas-=5;
     if(vidas>=0) ui->label_4->setNum(vidas);
     if(vidas<=0){
         ui->pushButton_2->setEnabled(false);
@@ -303,5 +305,5 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     vidas=10;
-    vida();
+    vida(1);
 }
