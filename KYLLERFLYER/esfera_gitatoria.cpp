@@ -1,49 +1,37 @@
-#include "bala_caida.h"
+#include "esfera_gitatoria.h"
 #include "mainwindow.h"
-#include "enemigo_caminante.h"
-#include "enemigo_saltarin.h"
-#include "enemigo_disparador.h"
-#include "enemigo_volador.h"
+#include <math.h>
 
-bala_caida::bala_caida( int x, int y)
+
+esfera_gitatoria::esfera_gitatoria()
 {
-    posx = x;
-    posy = y;
-    y0=y;
     //Le damos una posicion inicial
     setPos(posx,posy);
     QTimer *t=new QTimer();
+    QTimer *t2=new QTimer();
     //Conectamos la funcion movimiento al timer
     connect(t,SIGNAL(timeout()),this,SLOT(movimiento()));
     t->start(50);
+    connect(t2,SIGNAL(timeout()),this,SLOT(eliminar()));
+    t2->start(20000);
 }
 
-QRectF bala_caida::boundingRect() const
+QRectF esfera_gitatoria::boundingRect() const
 {
     return QRectF(-r,-r,2*r,2*r);
 }
 
-void bala_caida::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void esfera_gitatoria::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     //Le damos un color verde
-    painter->setBrush(Qt::yellow);
+    painter->setBrush(Qt::GlobalColor::darkMagenta);
     painter->drawEllipse(boundingRect());
 }
 
-void bala_caida::borrar()
+void esfera_gitatoria::borrar()
 {
     //Cuando el objeto se encuentre fuera del escenario sera eliminado
     MainWindow *mv=MainWindow::getMainWinPtr();
-    if(posx<0 or posx>1786){
-        mv->escena->removeItem(this);
-        delete this;
-        return;
-    }
-    else if(yd>700){
-        mv->escena->removeItem(this);
-        delete this;
-        return;
-    }
     if(mv->vidas<=0){
         mv->escena->removeItem(this);
         delete this;
@@ -51,7 +39,7 @@ void bala_caida::borrar()
     }
 }
 
-void bala_caida::movimiento()
+void esfera_gitatoria::movimiento()
 {
     MainWindow *mv=MainWindow::getMainWinPtr();
     QList<QGraphicsItem *> colliding_items=collidingItems();
@@ -59,18 +47,22 @@ void bala_caida::movimiento()
         if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
             mv->score();
             mv->escena->removeItem(colliding_items[i]);
-            mv->escena->removeItem(this);
             delete colliding_items[i];
-            delete this;
-            return;
         }
     }
-    //La bala realiza un mov de caida libre, por lo que no tiene velocidad en x
-    //Pero en y si, aparte agregamos un yd, que es el que nos permite colocar las coordenadas bien
-    //Debido a que en Qt el eje y esta invertido
-    posy=posy+vely-(9.8)/2;
-    vely=vely-(9.8)/2;
+    ax=((50000/pow(sqrt(pow(900-posx,2)+pow(310-posy,2)),3))*(900-posx));
+    ay=((50000/pow(sqrt(pow(900-posx,2)+pow(310-posy,2)),3))*(310-posy));
+    velx=velx+ax;
+    vely=vely+ay;
+    posx=posx+velx;
+    posy=posy+vely;
     yd=2*y0-posy;
     setPos(int(posx),int(yd));
     borrar();
+}
+
+void esfera_gitatoria::eliminar()
+{
+    delete this;
+    return;
 }

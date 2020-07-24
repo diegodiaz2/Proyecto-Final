@@ -201,7 +201,7 @@
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>50</x>
      <y>273</y>
      <width>100</width>
      <height>25</height>
@@ -212,6 +212,22 @@
    </property>
    <property name="text">
     <string>Salir del Juego</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>273</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Ayuda</string>
    </property>
   </widget>
  </widget>

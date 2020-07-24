@@ -14,21 +14,6 @@ bala_vertical::bala_vertical( int x, int y)
     t->start(50);
 }
 
-void bala_vertical::setR(int radio)
-{
-    r = radio;
-}
-
-void bala_vertical::setPosx(int px)
-{
-    posx=px;
-}
-
-void bala_vertical::setPosy(int py)
-{
-    posy = py;
-}
-
 QRectF bala_vertical::boundingRect() const
 {
     return QRectF(-r,-r,2*r,2*r);

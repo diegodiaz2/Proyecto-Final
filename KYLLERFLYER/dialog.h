@@ -36,6 +36,8 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushButton_6_clicked();
+
 private:
     bool iniciar(string susuario,string scontrasena);
     bool registrar(string susuario,string scontrasena);

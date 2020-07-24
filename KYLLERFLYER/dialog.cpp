@@ -230,3 +230,13 @@ void Dialog::on_pushButton_5_clicked()
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->close();
 }
+
+void Dialog::on_pushButton_6_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("¿Como jugar?");
+    msgBox.setText("1. Ingrese como usuario, o registrese.\n2. Inicie una nueva partida o cargue.\n"
+                   "3. Oprima una tecla para empezar.\n4. Con W,S,D,A va a mover su jugador y con X,C,V va a disparar.\n"
+                   "6. En modo multijugador el segundo jugador se movera con I,K,J,L y disparara con 1,2,3.\n");
+    msgBox.exec();
+}

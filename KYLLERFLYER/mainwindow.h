@@ -11,6 +11,7 @@
 #include "enemigo_saltarin.h"
 #include "enemigo_disparador.h"
 #include "poder_vida.h"
+#include "poder_circular.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -54,6 +55,7 @@ private:
     enemigo_caminante *caminante;
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
+    poder_circular *poder_circulo;
 public slots:
     void crear_enemigos();
 private slots:

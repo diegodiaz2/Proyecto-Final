@@ -45,9 +45,10 @@ void enemigo_disparador::velocidad(int puntaje)
     if(puntaje>=500 and puntaje < 700){
         vx=-5;
     }
-    else if(puntaje>=700){
+    else if(puntaje>=700 and puntaje<1000){
         vx=-6;
     }
+    else if(puntaje>=1000) vx=-7;
 }
 
 void enemigo_disparador::movimiento()
@@ -72,6 +73,6 @@ void enemigo_disparador::disparar()
 {
     //Se crea una bala y es añadida a la escena
     MainWindow *mw=MainWindow::getMainWinPtr();
-    bala=new bala_horizontal(x-10, y+30,-7, 2);
+    bala=new bala_horizontal(x-10, y+30,-8, 2);
     mw->escena->addItem(bala);
 }

@@ -153,7 +153,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         }
     }
     //El view se centra en la posicion del jugador
-    view->centerOn(jugador->x(),jugador->y());
 }
 
 MainWindow *MainWindow::getMainWinPtr()
@@ -170,10 +169,6 @@ void MainWindow::vida()
 {
     vidas-=10;
     if(vidas>=0) ui->label_4->setNum(vidas);
-    if(vidas==20){
-        poder_vida *health= new poder_vida();
-        escena->addItem(health);
-    }
     if(vidas<=0){
         ui->pushButton_2->setEnabled(false);
         timer->stop();
@@ -192,21 +187,49 @@ void MainWindow::score()
 {
     puntaje+=10;
     ui->label_2->setNum(puntaje);
-    if(puntaje>=100 and puntaje<500){
-        timer->stop();
-        timer->start(4000);
+    if(juego){
+        if(puntaje>=100 and puntaje<500){
+            timer->stop();
+            timer->start(4000);
+        }
+        else if(puntaje>=500 and puntaje<1000){
+            timer->stop();
+            timer->start(3000);
+        }
+        else if(puntaje>=1000 and puntaje<1500){
+            timer->stop();
+            timer->start(2000);
+        }
+        else if(puntaje>=1500){
+            timer->stop();
+            timer->start(1500);
+        }
     }
-    else if(puntaje>=500 and puntaje<1000){
-        timer->stop();
-        timer->start(3000);
+    else{
+        if(puntaje==100){
+            timer->stop();
+            timer->start(4000);
+        }
+        else if(puntaje==500){
+            timer->stop();
+            timer->start(3000);
+        }
+        else if(puntaje==1000){
+            timer->stop();
+            timer->start(2000);
+        }
+        else if(puntaje==1500){
+            timer->stop();
+            timer->start(1500);
+        }
     }
-    else if(puntaje>=1000 and puntaje<1500){
-        timer->stop();
-        timer->start(2000);
+    if((puntaje%500)==0){
+        poder_circulo=new poder_circular();
+        escena->addItem(poder_circulo);
     }
-    else if(puntaje>=1500){
-        timer->stop();
-        timer->start(1500);
+    if((puntaje%1000)==0){
+        poder_vida *health= new poder_vida();
+        escena->addItem(health);
     }
 }
 
@@ -271,7 +294,6 @@ void MainWindow::on_pushButton_clicked()
         ofstream k("../KYLLERFLYER/"+n_usuario+".txt",ios::app);
         k<<inf;
         k.close();
-
     }
     else{
         QMessageBox::about(this,"Error","Ya hay una partida con este nombre");

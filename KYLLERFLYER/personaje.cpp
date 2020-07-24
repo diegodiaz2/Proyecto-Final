@@ -64,13 +64,17 @@ void personaje::movimiento()
         if(limites(3))setPos(x(),y()+vel);
     }
     else if(n==3){//Hacia izquierda
-        if(limites(2))setPos(x()-vel,y());
+        if(limites(2))setPos(x()-vel+2,y());
     }
     else if(n==4){//Hacia derecha
-        if(limites(1))setPos(x()+vel,y());
+        if(limites(1))setPos(x()+vel-2,y());
     }
     if(j==1){
-        mv->view->centerOn(x(),y());
+        if(x()<=500) mv->view->centerOn(500,y());
+        else if(x()>1300) mv->view->centerOn(1300,y());
+        else if(x()>500 and x()<800) mv->view->centerOn(700,y());
+        else if(x()>800 and x()<1000)mv->view->centerOn(900,y());
+        else mv->view->centerOn(1100,y());
     }
 }
 

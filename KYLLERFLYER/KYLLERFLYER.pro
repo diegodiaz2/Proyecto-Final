@@ -25,9 +25,11 @@ SOURCES += \
     enemigo_disparador.cpp \
     enemigo_saltarin.cpp \
     enemigo_volador.cpp \
+    esfera_gitatoria.cpp \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp \
+    poder_circular.cpp \
     poder_vida.cpp
 
 HEADERS += \
@@ -40,8 +42,10 @@ HEADERS += \
     enemigo_disparador.h \
     enemigo_saltarin.h \
     enemigo_volador.h \
+    esfera_gitatoria.h \
     mainwindow.h \
     personaje.h \
+    poder_circular.h \
     poder_vida.h
 
 FORMS += \

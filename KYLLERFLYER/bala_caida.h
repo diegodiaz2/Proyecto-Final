@@ -14,9 +14,6 @@ public:
     double vely=0;
     double yd;
     bala_caida(int x, int y);
-    void setR(int radio);
-    void setPosx(int px);
-    void setPosy(int py);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
     void borrar();

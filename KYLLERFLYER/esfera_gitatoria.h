@@ -1,25 +1,26 @@
-#ifndef BALA_PARABOLICA_H
-#define BALA_PARABOLICA_H
+#ifndef ESFERA_GITATORIA_H
+#define ESFERA_GITATORIA_H
 
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QTimer>
 
-class bala_parabolica:public QObject, public QGraphicsItem
+class esfera_gitatoria:public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    int r=4;
-    double posx, posy,y0;
-    double velx=20;
-    double vely=20;
+    int r=10;
+    double posx=1100, posy=310,y0=310;
+    double vely=15,velx=0;
+    double ax,ay;
     double yd;
-    bala_parabolica(int x, int y);
+    esfera_gitatoria();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
     void borrar();
 public slots:
     void movimiento();
+    void eliminar();
 };
 
-#endif // BALA_PARABOLICA_H
+#endif // ESFERA_GITATORIA_H

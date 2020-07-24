@@ -14,9 +14,6 @@ public:
     int posx, posy;
     int velx;
     bala_horizontal(int x, int y,int vel, int tipo);
-    void setR(int radio);
-    void setPosx(int px);
-    void setPosy(int py);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
     void borrar();

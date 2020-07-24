@@ -34,14 +34,14 @@ enemigo_caminante::enemigo_caminante()
 
 void enemigo_caminante::velocidad(int puntaje)
 {
-    if(puntaje>=500 and puntaje<700){
-        vx=-5;
-    }
-    else if(puntaje>=700 and puntaje < 1500){
+    if(puntaje>=250 and puntaje<700){
         vx=-7;
     }
-    else if(puntaje>=1500){
+    else if(puntaje>=700 and puntaje < 1250){
         vx=-10;
+    }
+    else if(puntaje>=1250){
+        vx=-12;
     }
 }
 

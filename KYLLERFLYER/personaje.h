@@ -14,7 +14,7 @@ public:
     int n,j;
     QTimer *t;
 private:
-    int vel=8;
+    int vel=10;
     bool estado=0;
     void poder_vidas();
 public slots:

@@ -21,21 +21,6 @@ bala_horizontal::bala_horizontal( int x, int y,int vel, int tipo)
     t->start(50);
 }
 
-void bala_horizontal::setR(int radio)
-{
-    r = radio;
-}
-
-void bala_horizontal::setPosx(int px)
-{
-    posx=px;
-}
-
-void bala_horizontal::setPosy(int py)
-{
-    posy = py;
-}
-
 QRectF bala_horizontal::boundingRect() const
 {
     return QRectF(-r,-r,2*r,2*r);

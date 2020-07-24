@@ -18,21 +18,6 @@ bala_parabolica::bala_parabolica( int x, int y)
     t->start(50);
 }
 
-void bala_parabolica::setR(int radio)
-{
-    r = radio;
-}
-
-void bala_parabolica::setPosx(int px)
-{
-    posx=px;
-}
-
-void bala_parabolica::setPosy(int py)
-{
-    posy = py;
-}
-
 QRectF bala_parabolica::boundingRect() const
 {
     return QRectF(-r,-r,2*r,2*r);
