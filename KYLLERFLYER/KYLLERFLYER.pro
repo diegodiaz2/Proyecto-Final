@@ -16,13 +16,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bala_caida.cpp \
+    bala_horizontal.cpp \
+    bala_parabolica.cpp \
+    bala_vertical.cpp \
     dialog.cpp \
+    enemigo_caminante.cpp \
+    enemigo_disparador.cpp \
+    enemigo_saltarin.cpp \
+    enemigo_volador.cpp \
+    esfera_gitatoria.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    personaje.cpp \
+    poder_circular.cpp \
+    poder_vida.cpp
 
 HEADERS += \
+    bala_caida.h \
+    bala_horizontal.h \
+    bala_parabolica.h \
+    bala_vertical.h \
     dialog.h \
-    mainwindow.h
+    enemigo_caminante.h \
+    enemigo_disparador.h \
+    enemigo_saltarin.h \
+    enemigo_volador.h \
+    esfera_gitatoria.h \
+    mainwindow.h \
+    personaje.h \
+    poder_circular.h \
+    poder_vida.h
 
 FORMS += \
     dialog.ui \
@@ -32,3 +56,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    imagenes.qrc

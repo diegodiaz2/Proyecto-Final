@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Personaje0.png</file>
+        <file>Personaje1.png</file>
+        <file>Personaje2.png</file>
+        <file>Personaje3.png</file>
+        <file>fondo_menu.jpg</file>
+        <file>fondo_juego.jpg</file>
+        <file>enemigo_volador.png</file>
+        <file>enemigo_caminante.png</file>
+        <file>enemigo_caminante0.png</file>
+        <file>Saltarin0.png</file>
+        <file>Saltarin1.png</file>
+        <file>enemigo_disparador.png</file>
+        <file>heart.png</file>
+        <file>Personaje0 (2).png</file>
+        <file>Personaje1 (2).png</file>
+        <file>Personaje2 (2).png</file>
+        <file>Personaje3 (2).png</file>
+        <file>Coin.png</file>
+    </qresource>
+</RCC>

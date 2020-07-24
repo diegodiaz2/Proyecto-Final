@@ -19,15 +19,33 @@ public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
+
 private slots:
     void on_iniciarsesion_clicked();
 
     void on_registrar_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
 private:
     bool iniciar(string susuario,string scontrasena);
     bool registrar(string susuario,string scontrasena);
+    void menu_principal();
+    void cargar();
     Ui::Dialog *ui;
+    string us;
+
 };
 
 #endif // DIALOG_H
