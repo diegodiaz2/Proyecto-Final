@@ -5,6 +5,7 @@
 personaje::personaje(int n)
 {
     j=n;
+    //Se le da un sprite distinto a los personajes
     if(n==1){
         setPos(900,512);
         setPixmap(QPixmap(":/Personaje0.png").scaled(30,50));
@@ -15,6 +16,7 @@ personaje::personaje(int n)
         setPixmap(QPixmap(":/Personaje0 (2).png").scaled(30,50));
         t=new QTimer();
     }
+    //Se realiza un connect con la funcion movimiento
     connect(t,SIGNAL(timeout()),this,SLOT(movimiento()));
     t->start(50);
 }
@@ -70,12 +72,8 @@ void personaje::movimiento()
         if(limites(1))setPos(x()+vel-2,y());
     }
     if(j==1){
+        //El view se centra en el personaje principal
         mv->view->centerOn(x(),y());
-//        if(x()<=500) mv->view->centerOn(500,y());
-//        else if(x()>1300) mv->view->centerOn(1300,y());
-//        else if(x()>500 and x()<800) mv->view->centerOn(700,y());
-//        else if(x()>800 and x()<1000)mv->view->centerOn(900,y());
-//        else mv->view->centerOn(1100,y());
     }
 }
 
@@ -103,12 +101,15 @@ bool personaje::limites(int k)
 
 void personaje::poder_vidas()
 {
+    //Se revisan las colisiones
     MainWindow *mv=MainWindow::getMainWinPtr();
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
         if (typeid (*(colliding_items[i])) == typeid(poder_vida)){
+            //Se remueve el poder vida
             mv->escena->removeItem(colliding_items[i]);
             delete colliding_items[i];
+            //Se regenera la vida
             mv->vidas=110;
             mv->vida(1);
         }
