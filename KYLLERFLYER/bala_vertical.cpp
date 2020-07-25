@@ -33,6 +33,7 @@ void bala_vertical::borrar()
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
         if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            //Se disminuye la vida del personaje y es removida la bala
             mv->vida(1);
             mv->escena->removeItem(this);
             delete this;
@@ -50,6 +51,7 @@ void bala_vertical::borrar()
         delete this;
         return;
     }
+    //Cuando el usuario muere el objeto se elimina
     if(mv->vidas<=0){
         mv->escena->removeItem(this);
         delete this;

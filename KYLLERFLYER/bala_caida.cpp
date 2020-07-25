@@ -37,7 +37,9 @@ void bala_caida::borrar()
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
         if (typeid (*(colliding_items[i])) == typeid(enemigo_volador) or typeid (*(colliding_items[i])) == typeid(enemigo_caminante) or typeid (*(colliding_items[i])) == typeid(enemigo_saltarin) or typeid (*(colliding_items[i])) == typeid(enemigo_disparador)){
+            //Se aumenta el puntaje
             mv->score();
+            //Se elimina la bala y el objeto
             mv->escena->removeItem(colliding_items[i]);
             mv->escena->removeItem(this);
             delete colliding_items[i];
@@ -56,6 +58,7 @@ void bala_caida::borrar()
         delete this;
         return;
     }
+    //Cuando el usuario muere el objeto se elimina
     if(mv->vidas<=0){
         mv->escena->removeItem(this);
         delete this;

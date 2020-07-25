@@ -8,6 +8,7 @@ void enemigo_volador::eliminar()
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
         if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            //Se le baja vida al personaje y el enemigo se elimina
             mv->vida(1);
             mv->escena->removeItem(this);
             delete this;
@@ -21,6 +22,7 @@ void enemigo_volador::eliminar()
         delete this;
         return;
     }
+    //Cuando el usuario muere el objeto se elimina
     if(mv->vidas<=0){
         mv->escena->removeItem(this);
         delete this;
@@ -36,6 +38,7 @@ enemigo_volador::enemigo_volador()
     setPos(1780, y);
     //Le damos imagen al objeto
     setPixmap(QPixmap(":/enemigo_volador.png").scaled(30,50));
+    //Se hace un connect con la funcion movimiento
     connect(t,SIGNAL(timeout()),this,SLOT(movimiento()));
     t->start(50);
 }
@@ -50,6 +53,7 @@ int enemigo_volador::posicion()
 
 void enemigo_volador::velocidad(int puntaje)
 {
+    //Dependiendo del puntaje, se aumenta la velocidad
     if(puntaje>=250 and puntaje<700){
         vx=-7;
     }

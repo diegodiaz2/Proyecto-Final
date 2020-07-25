@@ -10,6 +10,7 @@ Dialog::Dialog(QWidget *parent) :
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowCloseButtonHint);
     ui->setupUi(this);
+    //Se quita la visibilidad de algunos botones
     ui->pushButton->setVisible(false);
     ui->pushButton_2->setVisible(false);
     ui->pushButton_3->setVisible(false);
@@ -145,6 +146,7 @@ void Dialog::menu_principal()
 
 void Dialog::cargar()
 {
+    //Se muestra la lista de las partidas guardadas por el usuario especifico
     ui->comboBox->clear();
     string inf;
     ifstream k("../KYLLERFLYER/"+us+".txt");
@@ -166,6 +168,7 @@ void Dialog::cargar()
 
 void Dialog::on_pushButton_clicked()
 {
+    //Se pasa la informacion necesario al MainWindow
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->n_usuario=us;
     mv->tipo=1;
@@ -177,6 +180,7 @@ void Dialog::on_pushButton_clicked()
 
 void Dialog::on_pushButton_2_clicked()
 {
+    //Se pasa la informacion necesario al MainWindow
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->tipo=2;
     mv->n_usuario=us;
@@ -188,7 +192,7 @@ void Dialog::on_pushButton_2_clicked()
 
 void Dialog::on_pushButton_3_clicked()
 {
-    //ui->pushButton_3->setEnabled(false);
+    //Se muestran las partidas guardadas
     ui->comboBox->setVisible(true);
     cargar();
 
@@ -197,6 +201,7 @@ void Dialog::on_pushButton_3_clicked()
 
 void Dialog::on_pushButton_4_clicked()
 {
+    //Se cargan la informacion
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->n_usuario=us;
     string inf;
@@ -227,12 +232,14 @@ void Dialog::on_pushButton_4_clicked()
 
 void Dialog::on_pushButton_5_clicked()
 {
+    //Se cierra el MainWindow
     MainWindow *mv=MainWindow::getMainWinPtr();
     mv->close();
 }
 
 void Dialog::on_pushButton_6_clicked()
 {
+    //Se muestran las instrucciones del juego
     QMessageBox msgBox;
     msgBox.setWindowTitle("¿Como jugar?");
     msgBox.setText("1. Ingrese como usuario, o registrese.\n2. Inicie una nueva partida o cargue.\n"

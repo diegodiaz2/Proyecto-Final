@@ -9,6 +9,7 @@ void enemigo_caminante::eliminar()
     QList<QGraphicsItem *> colliding_items=collidingItems();
     for(int i=0, n=colliding_items.size(); i<n; i++){
         if (typeid (*(colliding_items[i])) == typeid(personaje)){
+            //Se le baja vida al personaje y el enemigo se elimina
             mv->vida(1);
             mv->escena->removeItem(this);
             delete this;
@@ -22,6 +23,7 @@ void enemigo_caminante::eliminar()
         delete this;
         return;
     }
+    //Cuando el usuario muere el objeto se elimina
     if(mv->vidas<=0){
         mv->escena->removeItem(this);
         delete this;
@@ -37,14 +39,17 @@ enemigo_caminante::enemigo_caminante()
     setPos(1780, 512);
     //Le damos imagen al objeto
     setPixmap(QPixmap(":/enemigo_caminante.png").scaled(30,50));
+    //Se hace un connect con la funcion movimiento
     connect(t,SIGNAL(timeout()),this,SLOT(movimiento()));
     t->start(50);
+    //Se hace un connect con la funcion disparar
     connect(t2,SIGNAL(timeout()),this,SLOT(disparar()));
     t2->start(2000);
 }
 
 void enemigo_caminante::velocidad(int puntaje)
 {
+    //Dependiendo del puntaje, se aumenta la velocidad
     if(puntaje>=250 and puntaje<700){
         vx=-7;
     }
