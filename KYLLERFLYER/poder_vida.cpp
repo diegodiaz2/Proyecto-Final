@@ -1,5 +1,7 @@
 #include "poder_vida.h"
 
+
+//
 poder_vida::poder_vida()
 {
     int x,y;
