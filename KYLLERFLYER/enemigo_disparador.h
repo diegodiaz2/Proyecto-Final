@@ -1,23 +1,20 @@
 #ifndef ENEMIGO_DISPARADOR_H
 #define ENEMIGO_DISPARADOR_H
 
+#include "enemigo_volador.h"
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include "bala_horizontal.h"
 
-class enemigo_disparador: public QObject, public  QGraphicsPixmapItem
+class enemigo_disparador: public enemigo_volador
 {
     Q_OBJECT
-private:
-    void eliminar();
 public:
     double x, y, vx=-4;
     enemigo_disparador();
-    int posicion();
     bala_horizontal *bala;
     void velocidad(int puntaje);
 public slots:
-    void movimiento();
     void disparar();
 };
 
