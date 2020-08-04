@@ -48,6 +48,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(tipo==1){
             escena->removeItem(text);
             escena->clear();
+            escena->setBackgroundBrush(QBrush(QImage(":/fondo_juego_sin_letra.jpg")));
             //Creamos un jugador
             jugador= new personaje(1);
             //Lo añadimos a la escena
@@ -63,6 +64,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         if(tipo==2){
             escena->removeItem(text);
             escena->clear();
+            escena->setBackgroundBrush(QBrush(QImage(":/fondo_multijugador.png")));
             jugador= new personaje(1);
             //Lo añadimos a la escena
             escena->addItem(jugador);
