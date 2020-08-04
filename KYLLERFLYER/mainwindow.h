@@ -56,6 +56,7 @@ private:
     enemigo_saltarin *saltarin;
     enemigo_disparador *disparador;
     poder_circular *poder_circulo;
+    QGraphicsTextItem *text;
 public slots:
     void crear_enemigos();
 private slots:
