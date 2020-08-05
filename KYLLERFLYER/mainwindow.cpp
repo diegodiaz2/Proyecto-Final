@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Creamos la escena
     escena->setSceneRect(0, 0, 1817, 623);
     //Damos un fondo a la escena
-    escena->setBackgroundBrush(QBrush(QImage(":/fondo_juego.jpg")));
+    escena->setBackgroundBrush(QBrush(QImage(":/fondo_juego_sin_letra.jpg")));
     view->setScene(escena);
     view->resize(1000, 625);
     //Deshabilitamos la barra
@@ -27,15 +27,28 @@ MainWindow::MainWindow(QWidget *parent)
     timer=new QTimer();
     //Se hace un connect con la funcion crear_enemigos
     connect(timer,SIGNAL(timeout()),this,SLOT(crear_enemigos()));
-    //Se desactiva el boton de guardado
+    //Se desactiva el boton de menu principal
     ui->pushButton_2->setEnabled(false);
+    //Se desactiva el boton de guardado
+    ui->pushButton->setEnabled(false);
+
+    text=new QGraphicsTextItem();
+    text->setPlainText("PRESIONE UNA TECLA");
+    QFont endFont("Wide Latin",20);
+    text->setFont(endFont);
+    text->setDefaultTextColor(Qt::darkGray);
+    text->setPos(575,70);
+    escena->addItem(text);
+
     pMainWindow=this;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event){   
     if(juego){
         if(tipo==1){
+            escena->removeItem(text);
             escena->clear();
+            escena->setBackgroundBrush(QBrush(QImage(":/fondo_juego_sin_letra.jpg")));
             //Creamos un jugador
             jugador= new personaje(1);
             //Lo añadimos a la escena
@@ -43,11 +56,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             timer->start(5000);
             score();
             vida(1);
-            //Se habilita el boton de guardado
+            //Se habilita el boton de menu principal
             ui->pushButton_2->setEnabled(true);
+            //Se habilita el boton de guardado
+            ui->pushButton->setEnabled(true);
         }
         if(tipo==2){
+            escena->removeItem(text);
             escena->clear();
+            escena->setBackgroundBrush(QBrush(QImage(":/fondo_multijugador.png")));
             jugador= new personaje(1);
             //Lo añadimos a la escena
             escena->addItem(jugador);
@@ -56,8 +73,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             timer->start(5000);
             score();
             vida(1);
-            //Se habilita el boton de guardado
+            //Se habilita el boton de menu principal
             ui->pushButton_2->setEnabled(true);
+            //Se habilita el boton de guardado
+            ui->pushButton->setEnabled(true);
         }
         juego=0;
     }
@@ -172,6 +191,7 @@ void MainWindow::vida(int n)
     //Se eliminan los personajes y se muestra el menu principal
     if(vidas<=0){
         ui->pushButton_2->setEnabled(false);
+        ui->pushButton->setEnabled(false);
         timer->stop();
         if(tipo==1){
             delete jugador;
@@ -180,6 +200,8 @@ void MainWindow::vida(int n)
             delete jugador;
             delete jugador2;
         }
+        escena->addItem(text);
+        view->centerOn(text);
         usuario->show();
     }
 }

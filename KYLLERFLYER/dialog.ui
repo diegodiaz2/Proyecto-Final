@@ -29,12 +29,13 @@
    <string>Inicio del Juego</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147));</string>
+   <string notr="true">background-image: url(:/fondo_menu.jpg);
+color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QPushButton" name="iniciarsesion">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>180</x>
      <y>130</y>
      <width>93</width>
      <height>28</height>
@@ -50,7 +51,7 @@
   <widget class="QPushButton" name="registrar">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>280</x>
      <y>130</y>
      <width>93</width>
      <height>28</height>
@@ -141,7 +142,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>100</y>
+     <y>90</y>
      <width>341</width>
      <height>61</height>
     </rect>
@@ -157,7 +158,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>180</y>
+     <y>160</y>
      <width>341</width>
      <height>61</height>
     </rect>
@@ -173,7 +174,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>250</y>
+     <y>240</y>
      <width>211</width>
      <height>22</height>
     </rect>
@@ -186,7 +187,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>250</y>
+     <y>240</y>
      <width>111</width>
      <height>23</height>
     </rect>

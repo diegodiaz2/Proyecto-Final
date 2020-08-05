@@ -118,7 +118,7 @@ bool Dialog::registrar(string susuario,string scontrasena)
     if(n) QMessageBox::about(this,"Error","Este usuario ya existe");
     //En dado caso de que no exista lo guarda
     else {
-        inf=susuario+" "+scontrasena+"\n";
+        inf="\n"+susuario+" "+scontrasena;
         ofstream k("../KYLLERFLYER/cuentas.txt",ios::app);
         k<<inf;
         k.close();
